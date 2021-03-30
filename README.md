@@ -16,3 +16,25 @@ docker run \
 ```
 
 Make sure volume isn't bound to container before passing environment variables, otherwise root user won't be saved.
+
+## API
+
+Add connection string in appsettings.json and specify password and user.
+
+```javascript
+{
+  "UsersDatabaseSettings": {
+    "UsersCollectionName": "Users",
+    "ConnectionString": "mongodb://root:password@localhost:27017/?authSource=admin",
+    "DatabaseName": "Users" 
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}
+```
