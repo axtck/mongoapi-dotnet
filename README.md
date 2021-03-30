@@ -19,7 +19,7 @@ Make sure volume isn't bound to container before passing environment variables, 
 
 ## API
 
-Add connection string in appsettings.json and specify password and user.
+Add connection string in appsettings.json and specify user, password and host ip.
 
 ```javascript
 {
