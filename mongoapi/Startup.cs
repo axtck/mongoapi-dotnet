@@ -6,7 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using mongoapi.Services;
+using mongoapi.SettingModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +29,19 @@ namespace mongoapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // configure db settings with dependency injection
+            services.Configure<UsersDatabaseSettings>(
+                Configuration.GetSection(nameof(UsersDatabaseSettings)));
 
-            services.AddControllers();
+            // get required service
+            services.AddSingleton<IUsersDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<UsersDatabaseSettings>>().Value);
+
+            services.AddSingleton<UserService>();
+
+            services.AddControllers(); // add controllers
+
+            // swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "mongoapi", Version = "v1" });
