@@ -12,6 +12,7 @@ docker run \
     -e MONGO_INITDB_ROOT_USERNAME="root" \
     -e MONGO_INITDB_ROOT_PASSWORD="password" \
     -v /home/localpath/data:/data/db \
+    --name mongodb
     -d mongo:4.4.4
 ```
 
@@ -19,7 +20,7 @@ Make sure volume isn't bound to container before passing environment variables, 
 
 ## API
 
-Add connection string in appsettings.json and specify user, password and host ip.
+Add connection string in appsettings.json with user, password and host ip.
 
 ```javascript
 {
