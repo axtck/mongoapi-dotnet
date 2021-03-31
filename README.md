@@ -12,7 +12,7 @@ docker run \
     -e MONGO_INITDB_ROOT_USERNAME="root" \
     -e MONGO_INITDB_ROOT_PASSWORD="password" \
     -v /home/localpath/data:/data/db \
-    --name mongodb
+    --name mongodb \
     -d mongo:4.4.4
 ```
 
